@@ -1,0 +1,49 @@
+{% extends 'admin.html' %}
+{% block eventsnav %}
+
+<a href="{{ url_for('upcoming') }}">
+    <li class="nav-item p-3">
+        <button class="btn btn-primary" type="submit" value="submit">Upcoming</button>
+    </li>
+</a>
+<li class="nav-item p-3">
+    <button class="btn btn-warning disabled" type="submit" value="submit">Past</button>
+</li>
+
+{% endblock%}
+
+
+{% block events %}
+
+{% if events == [] %}
+<hr>
+<h3 class="text-center"> No events available</h3>
+<hr>
+
+{% else %}
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">Event</th>
+            <th scope="col">Date</th>
+            <th scope="col">Time</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for event in events: %}
+        <tr>
+            <th scope="col" class="text-capitalize">{{ event[:-12].replace("_", " ")}}</th>
+            <th scope="col">{{ event[-12:-10]}}/{{ event[-10:-8]}}/{{ event[-8:-4]}}</th>
+            <th scope="col">{{ event[-4:-2]}}:{{ event[-2:]}}</th>
+            <th scope="col">
+                <a href="{{url_for('view_past', event=event)}}">
+                    <button class="btn btn-outline-warning">View</button>
+                </a>
+            </th>
+        </tr>
+
+        {% endfor%}
+    </tbody>
+</table>
+{% endif %}
+{% endblock %}

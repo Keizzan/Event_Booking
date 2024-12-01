@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <h3 class="text-center mt-4 text-capitalize">{{ event[1].replace("_", " ") }}</h3>
+
+    <ul class="nav justify-content-end mt-2 p-3">
+        <li class="nav-item">
+            <a href="{{ url_for('past')}}">
+                <button class="btn btn-danger">Back</button>
+            </a>
+        </li>
+    </ul>
+
+    <h4>Status: {{ event[-1].capitalize() }}</h4>
+
+    <hr>
+
+    {% if records == {}%}
+
+    <h3 class="text-center mt-4"> No bookings </h3>
+
+    {% else %}
+
+    <table class="table table-striped text-center">
+        <thead>
+            <tr>
+                <th scope="col">
+                    <h5>Name</h5>
+                </th>
+                <th scope="col">
+                    <h5>Surname</h5>
+                </th>
+                <th scope="col">
+                    <h5>E-mail</h5>
+                </th>
+                <th scope="col">
+                    <h5>Phone</h5>
+                </th>
+                <th scope="col">
+                    <h5>Booked spaces</h5>
+                </th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+            {% for record in records %}
+
+            <tr>
+                <th scope="col">{{ records[record]['fname'] }}</th>
+                <th scope="col">{{ records[record]['lname'] }}</th>
+                <th scope="col">{{ records[record]['email'] }}</th>
+                <th scope="col">{{ records[record]['phone'] }}</th>
+                <th scope="col">{{ records[record]['booking'] }} </th>
+            </tr>
+
+            {% endfor %}
+
+        </tbody>
+    </table>
+
+    <hr>
+    <ul class="nav justify-content-end mt-2 p-3">
+        <li class="nav-item">
+            <h5>Booked {{ booking }} out of {{ event[-3] }}</h5>
+        </li>
+    </ul>
+
+    {% endif %}
+</div>
+{% endblock %}

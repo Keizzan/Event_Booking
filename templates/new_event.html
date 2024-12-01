@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="container">
+    <h3 class="text-center mt-4">Create new event</h3>
+    <ul class="nav justify-content-end mt-2 p-3">
+        <li class="nav-item">
+            <a href="{{ url_for('upcoming')}}">
+                <button class="btn btn-danger">Back</button>
+            </a>
+        </li>
+    </ul>
+    <hr>
+    <div class="row justify-content-center">
+        <div class="col-5">
+            <form action="{{ url_for('new_event')}}" method="POST" class="mt-2
+        ">
+                <div class="mb-3 p-2 text-center">
+                    <label>Event name</label>
+                    <input class="form-control" type="text" id="name" name="name" required>
+                </div>
+
+                <div class="mb-3 p-2 text-center">
+                    <label>Date</label>
+                    <input class="form-control" type="date" id="date" name="date" required>
+                </div>
+
+                <div class="mb-3 p-2 text-center">
+                    <label>Time</label>
+                    <input class="form-control" type="time" id="time" name="time" required>
+                </div>
+
+                <div class="mb-3 p-2 text-center">
+                    <label>Price</label>
+                    <input class="form-control" type="text" id="price" name="price" required>
+                </div>
+
+                <div class="mb-3 p-2 text-center">
+                    <label>Limit</label>
+                    <input class="form-control" type="number" id="limit" name="limit" required>
+                </div>
+
+                <div class="mb-3 p-2 text-center">
+                    <label>Description</label>
+                    <textarea class="form-control" id="desc" name="desc" row="4" cols="10"></textarea>
+                </div>
+
+                <div class="text-center">
+                    <button class="btn btn-primary" type="submit">Create new event</button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+    {% endblock %}

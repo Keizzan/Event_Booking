@@ -1,0 +1,139 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<style>
+    ul {
+        list-style-type: none;
+        padding-top: 20px;
+    }
+</style>
+<div class="container">
+    <h2 class="text-center mt-5 mb-3">
+        <b>
+            {{event[:-12].replace("_", " ").capitalize()}}
+        </b>
+    </h2>
+
+    <h4 class="text-center">
+        <i>
+            {{event_details[-2]}}
+        </i>
+    </h4>
+
+    {% if show_left_bookings %}
+    <h5 class="text-end">
+        <u>
+            Only {{ left_spaces }} spaces left!
+        </u>
+    </h5>
+    {% endif %}
+    {% if msg %}
+    <br><br>
+    <hr>
+    <h2 class="text-center">{{msg}}</h2>
+    <br>
+    <hr>
+    {% endif %}
+</div>
+
+<div class="row justify-content-center">
+    <div class="col-5">
+
+        <form action="" method="POST" class="mt-2">
+            {{ form.csrf_token }}
+
+            <div class="mb-3 p-2 text-center">
+                {{ form.fname.label}}
+                <br>
+                {{ form.fname() }}
+                {% if form.fname.errors %}
+                <ul>
+                    {% for error in form.fname.errors %}
+                    <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+            </div>
+
+            <div class="mb-3 p-2 text-center">
+                {{ form.lname.label}}
+                <br>
+                {{ form.lname() }}
+                {% if form.lname.errors %}
+                <ul>
+                    {% for error in form.lname.errors %}
+                    <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+            </div>
+
+            <div class="mb-3 p-2 text-center">
+                {{ form.email.label}}
+                <br>
+                {{ form.email() }}
+                {% if form.email.errors %}
+                <ul>
+                    {% for error in form.email.errors %}
+                    <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+            </div>
+
+            <div class="mb-3 p-2 text-center">
+                {{ form.phone.label}}
+                <br>
+                {{ form.phone() }}
+                {% if form.phone.errors %}
+                <ul>
+                    {% for error in form.phone.errors %}
+                    <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+            </div>
+
+            <div class="mb-3 p-2 text-center">
+                {{ form.booking.label}}
+                <br>
+                {{ form.booking() }}
+                {% if form.booking.errors %}
+                <ul>
+                    {% for error in form.booking.errors %}
+                    <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+            </div>
+
+            <div class="mb-3 p-2 text-center">
+                {{ form.mailing_list.label}}
+                <br>
+                {{ form.mailing_list() }}
+            </div>
+
+            <div class="mb-3 p-2 text-center">
+                {{ form.terms_and_condition.label}}
+                <br>
+                {{ form.terms_and_condition() }}
+
+                {% if form.terms_and_condition.errors %}
+                <ul>
+                    {% for error in form.terms_and_condition.errors %}
+                    <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+            </div>
+
+            <div class="text-center">
+                <button class="btn btn-primary mt-2" id="submitBtn" type="submit">Confirm booking</button>
+            </div>
+        </form>
+
+    </div>
+</div>
+
+
+{% endblock %}

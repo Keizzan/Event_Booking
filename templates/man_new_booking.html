@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container">
+    <h3 class="text-center mt-4">Add booking</h3>
+    <ul class="nav justify-content-end mt-2 p-3">
+        <li class="nav-item">
+            <a href="{{ url_for('view', event=event) }}">
+                <button class="btn btn-danger">Back</button>
+            </a>
+        </li>
+    </ul>
+    <hr>
+    <div class="row justify-content-center">
+        <div class="col-5">
+            <form action="{{ url_for('man_new_booking', event=event)}}" method="POST" class="mt-2
+        ">
+                <div class="mb-3 p-2 text-center">
+                    <label>First name</label>
+                    <input class="form-control" type="text" id="fname" name="fname" required>
+                </div>
+
+                <div class="mb-3 p-2 text-center">
+                    <label>Last name</label>
+                    <input class="form-control" type="text" id="lname" name="lname" required>
+                </div>
+
+                <div class="mb-3 p-2 text-center">
+                    <label>Email</label>
+                    <input class="form-control" type="email" id="email" name="email" required>
+                </div>
+
+                <div class="mb-3 p-2 text-center">
+                    <label>Phone</label>
+                    <input class="form-control" type="text" id="phone" name="phone">
+                </div>
+
+                <div class="mb-3 p-2 text-center">
+                    <label>Booking</label>
+                    <input class="form-control" type="number" id="booking" name="booking" required>
+                </div>
+
+                <div class="text-center">
+                    <button class="btn btn-primary" type="submit">Add new booking</button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+{% endblock %}

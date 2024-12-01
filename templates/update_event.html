@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="container">
+    <h3 class="text-center mt-4">Update event details</h3>
+    <ul class="nav justify-content-end mt-2 p-3">
+        <li class="nav-item">
+            <a href="{{ url_for('view', event=event[1].lower()+event[2]+event[3])}}">
+                <button class="btn btn-danger">Back</button>
+            </a>
+        </li>
+    </ul>
+    <hr>
+    <div class="row justify-content-center">
+        <div class="col-5">
+            <form action="{{ url_for('update', event=event[1].lower()+event[2]+event[3])}}" method="POST" class="mt-2
+        ">
+                <div class="mb-3 p-2 text-center">
+                    <label>Event name</label>
+                    <input class="form-control" type="text" id="name" name="name"
+                        value="{{event[1].replace('_',' ').capitalize()}}" readonly='True'>
+                </div>
+
+                <div class="mb-3 p-2 text-center">
+                    <label>Date</label>
+                    <input class="form-control" type="date" id="date" name="date"
+                        value="{{event[2][-4:]+'-'+event[2][2:4]+'-'+event[2][:2]}}" readonly='True'>
+                </div>
+
+                <div class="mb-3 p-2 text-center">
+                    <label>Time</label>
+                    <input class="form-control" type="time" id="time" name="time"
+                        value="{{event[3][:2]+':'+event[3][2:]}}" readonly='True'>
+                </div>
+
+                <div class="mb-3 p-2 text-center">
+                    <label>Price</label>
+                    <input class="form-control" type="text" id="price" name="price" value="{{event[4]}}" required>
+                </div>
+
+                <div class="mb-3 p-2 text-center">
+                    <label>Limit</label>
+                    <input class="form-control" type="number" id="limit" name="limit" value="{{event[5]}}" required>
+                </div>
+
+                <div class="mb-3 p-2 text-center">
+                    <label>Description</label>
+                    <textarea class="form-control" id="desc" name="desc" row="4" cols="10">{{event[6]}}</textarea>
+                </div>
+
+                <div class="text-center">
+                    <button class="btn btn-primary" type="submit">Update event</button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+    {% endblock %}

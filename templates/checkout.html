@@ -1,0 +1,48 @@
+{% extends "base_checkout.html" %}
+{% block content %}
+
+<section class="section">
+    <div class="container text-center">
+
+        <h2 class=mt-5>Please confirm details</h2>
+
+        <hr><br>
+        <table class="table table-striped m-2">
+            <thead>
+                <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Phone Number</th>
+                    <th scope="col">Booked Spaces</th>
+                    <th scope="col">Amount to pay</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">
+                        {{ user_booking['fname'].capitalize() }} {{ user_booking['lname'].capitalize() }}
+                    </th>
+                    <th scope="row">
+                        {{ user_booking['email'] }}
+                    </th>
+                    <th scope="row">
+                        {{ user_booking['phone'] }}
+                    </th>
+                    <th scope="row">
+                        {{ user_booking['booking'] }}
+                    </th>
+                    <th scope="row">
+                        <span>&#163;</span>{{ user_booking['booking'] * price }}
+                    </th>
+                </tr>
+            </tbody>
+        </table>
+        <hr>
+        <br>
+
+        <h2 class="p-5">Proceed to payment</h2>
+        <button class="btn btn-primary" id="submitBtn">Proceed</button>
+    </div>
+</section>
+
+{% endblock %}

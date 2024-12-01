@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<style>
+    ul {
+        list-style-type: none;
+        padding-top: 20px;
+    }
+</style>
+
+<div class="container w-25">
+
+    <form action="{{ url_for('login')}}" method="post" class="mt-5">
+
+        {{ form.csrf_token }}
+
+        <div class="mb-3 p-2 text-center">
+            {{ form.username.label }}
+            <br>
+            {{ form.username() }}
+            {% if form.username.errors %}
+            <ul>
+                {% for error in form.username.errors %}
+                <li>{{ error }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+        </div>
+
+        <div class="mb-3 p-2 text-center">
+            {{form.password.label}}
+            <br>
+            {{form.password()}}
+            {% if form.password.errors %}
+            <ul>
+                {% for error in form.password.errors %}
+                <li>{{ error }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+        </div>
+        <div class="text-center">
+            <button class="btn btn-primary" type="submit">Login</button>
+        </div>
+    </form>
+    <div class="pt-5 mt-2 text-center">
+        <b>
+            {{ msg }}
+        </b>
+    </div>
+
+</div>
+{% endblock %}
